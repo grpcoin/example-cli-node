@@ -11,6 +11,8 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "@oclif/plugin-not-found": "^1.2.4",
+    "@oclif/plugin-plugins": "^1.10.0",
     "tslib": "^1"
   },
   "devDependencies": {
@@ -42,7 +44,14 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "bin": "grpcoin"
+    "bin": "grpcoin",
+    "commands": "./src/commands",
+    "helpClass": "./src/lib/help",
+    "plugins": [
+      "@oclif/plugin-not-found",
+      "@oclif/plugin-plugins",
+      "@oclif/plugin-help"
+    ]
   },
   "repository": "TheYkk/grpcoin",
   "scripts": {
