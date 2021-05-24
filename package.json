@@ -1,7 +1,7 @@
 {
   "name": "grpcoin",
   "description": "Grpc Coin Node cli",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Kaan Karakaya @TheYkk",
   "bin": {
     "grpcoin": "./bin/run"
@@ -55,7 +55,6 @@
     "helpClass": "./src/lib/help",
     "plugins": [
       "@oclif/plugin-not-found",
-      "@oclif/plugin-plugins",
       "@oclif/plugin-help"
     ]
   },
