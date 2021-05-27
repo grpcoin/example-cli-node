@@ -1,6 +1,6 @@
 import { Amount } from "../proto/grpcoin_pb";
 
-export function Parse(p: String): Amount {
+const Parse = (p: String): Amount => {
   // Split the string on a decimal point, if present
   let pa = p.split(".");
   let units = pa[0];
@@ -15,4 +15,6 @@ export function Parse(p: String): Amount {
     nanos = parseInt(ns, 10);
   }
   return new Amount().setUnits(parseInt(units)).setNanos(nanos);
-}
+};
+
+export { Parse };
