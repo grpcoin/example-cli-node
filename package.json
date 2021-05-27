@@ -40,18 +40,18 @@
   },
   "files": [
     "/bin",
-    "/dist"
+    "/lib"
   ],
   "homepage": "https://github.com/grpcoin/example-cli-node",
   "keywords": [
     "oclif"
   ],
   "license": "Apache 2.0",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "oclif": {
     "bin": "grpcoin",
-    "commands": "./dist/commands",
-    "helpClass": "./dist/lib/help",
+    "commands": "./lib/commands",
+    "helpClass": "./lib/lib/help",
     "plugins": [
       "@oclif/plugin-not-found",
       "@oclif/plugin-help"
@@ -61,9 +61,9 @@
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "fix": "eslint . --ext .ts --config .eslintrc --fix",
-    "prepack": "rm -rf dist && tsc -b && oclif-dev readme",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
   },
-  "types": "dist/index.d.ts"
+  "types": "lib/index.d.ts"
 }

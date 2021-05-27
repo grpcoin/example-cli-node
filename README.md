@@ -48,7 +48,7 @@ EXAMPLE
   $ grpcoin buy 2.5
 ```
 
-_See code: [dist/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/dist/commands/buy.ts)_
+_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/src/commands/buy.ts)_
 
 ## `grpcoin help [COMMAND]`
 
@@ -82,7 +82,7 @@ EXAMPLE
   $ grpcoin sell 2.5
 ```
 
-_See code: [dist/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/dist/commands/sell.ts)_
+_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/src/commands/sell.ts)_
 
 ## `grpcoin watch`
 
@@ -99,5 +99,5 @@ EXAMPLE
   $ grpcoin watch
 ```
 
-_See code: [dist/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/dist/commands/watch.ts)_
+_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.0/src/commands/watch.ts)_
 <!-- commandsstop -->
