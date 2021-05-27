@@ -15,14 +15,14 @@ Grpc Coin Node cli
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g grpcoin
-$ grpcoin COMMAND
+$ npx grpcoin@latest
+$ npx grpcoin COMMAND
 running command...
-$ grpcoin (-v|--version|version)
+$ npx grpcoin (-v|--version|version)
 grpcoin/0.2.1 linux-x64 node-v16.1.0
-$ grpcoin --help [COMMAND]
+$ npx grpcoin --help [COMMAND]
 USAGE
-  $ grpcoin COMMAND
+  $ npx grpcoin COMMAND
 ...
 ```
 <!-- usagestop -->
@@ -39,13 +39,13 @@ Buy coin
 
 ```
 USAGE
-  $ grpcoin buy [AMOUNT]
+  $ npx grpcoin buy [AMOUNT]
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ grpcoin buy 2.5
+  $ npx grpcoin buy 2.5
 ```
 
 _See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/buy.ts)_
@@ -56,7 +56,7 @@ Display help. To display help for a specific command run `grpcoing help [command
 
 ```
 USAGE
-  $ grpcoin help [COMMAND]
+  $ npx grpcoin help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -73,13 +73,13 @@ Sell coin
 
 ```
 USAGE
-  $ grpcoin sell [AMOUNT]
+  $ npx grpcoin sell [AMOUNT]
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ grpcoin sell 2.5
+  $ npx grpcoin sell 2.5
 ```
 
 _See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/sell.ts)_
@@ -90,13 +90,13 @@ Watch coin
 
 ```
 USAGE
-  $ grpcoin watch
+  $ npx grpcoin watch
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ grpcoin watch
+  $ npx grpcoin watch
 ```
 
 _See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/watch.ts)_
