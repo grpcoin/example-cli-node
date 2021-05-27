@@ -22,7 +22,6 @@
 
 import * as grpc from "grpc";
 import * as grpcoin_pb from "./grpcoin_pb";
-// @ts-ignore
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
 interface ITickerInfoService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {

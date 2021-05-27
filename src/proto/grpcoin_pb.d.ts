@@ -20,12 +20,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-// @ts-ignore
 import * as jspb from "google-protobuf";
-// @ts-ignore
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class QuoteTicker extends jspb.Message {
+export class QuoteTicker extends jspb.Message { 
     getTicker(): string;
     setTicker(value: string): QuoteTicker;
 
@@ -45,7 +43,7 @@ export namespace QuoteTicker {
     }
 }
 
-export class Quote extends jspb.Message {
+export class Quote extends jspb.Message { 
 
     hasT(): boolean;
     clearT(): void;
@@ -74,7 +72,7 @@ export namespace Quote {
     }
 }
 
-export class Amount extends jspb.Message {
+export class Amount extends jspb.Message { 
     getUnits(): number;
     setUnits(value: number): Amount;
     getNanos(): number;
@@ -97,7 +95,7 @@ export namespace Amount {
     }
 }
 
-export class TestAuthRequest extends jspb.Message {
+export class TestAuthRequest extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TestAuthRequest.AsObject;
@@ -114,7 +112,7 @@ export namespace TestAuthRequest {
     }
 }
 
-export class TestAuthResponse extends jspb.Message {
+export class TestAuthResponse extends jspb.Message { 
     getUserId(): string;
     setUserId(value: string): TestAuthResponse;
 
@@ -134,7 +132,7 @@ export namespace TestAuthResponse {
     }
 }
 
-export class PortfolioRequest extends jspb.Message {
+export class PortfolioRequest extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): PortfolioRequest.AsObject;
@@ -151,7 +149,7 @@ export namespace PortfolioRequest {
     }
 }
 
-export class PortfolioResponse extends jspb.Message {
+export class PortfolioResponse extends jspb.Message { 
 
     hasCashUsd(): boolean;
     clearCashUsd(): void;
@@ -179,7 +177,7 @@ export namespace PortfolioResponse {
     }
 }
 
-export class PortfolioPosition extends jspb.Message {
+export class PortfolioPosition extends jspb.Message { 
 
     hasTicker(): boolean;
     clearTicker(): void;
@@ -208,7 +206,7 @@ export namespace PortfolioPosition {
     }
 
 
-    export class Ticker extends jspb.Message {
+    export class Ticker extends jspb.Message { 
         getTicker(): string;
         setTicker(value: string): Ticker;
 
@@ -230,7 +228,7 @@ export namespace PortfolioPosition {
 
 }
 
-export class TradeRequest extends jspb.Message {
+export class TradeRequest extends jspb.Message { 
     getAction(): TradeAction;
     setAction(value: TradeAction): TradeRequest;
 
@@ -262,7 +260,7 @@ export namespace TradeRequest {
     }
 
 
-    export class Ticker extends jspb.Message {
+    export class Ticker extends jspb.Message { 
         getTicker(): string;
         setTicker(value: string): Ticker;
 
@@ -284,7 +282,7 @@ export namespace TradeRequest {
 
 }
 
-export class TradeResponse extends jspb.Message {
+export class TradeResponse extends jspb.Message { 
 
     hasT(): boolean;
     clearT(): void;
@@ -322,7 +320,7 @@ export namespace TradeResponse {
     }
 }
 
-export class Empty extends jspb.Message {
+export class Empty extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Empty.AsObject;
