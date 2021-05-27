@@ -19,7 +19,7 @@ $ npm install -g grpcoin
 $ grpcoin COMMAND
 running command...
 $ grpcoin (-v|--version|version)
-grpcoin/0.0.1 linux-x64 node-v16.1.0
+grpcoin/0.1.0 linux-x64 node-v16.1.0
 $ grpcoin --help [COMMAND]
 USAGE
   $ grpcoin COMMAND
@@ -31,7 +31,7 @@ USAGE
 * [`grpcoin buy [AMOUNT]`](#grpcoin-buy-amount)
 * [`grpcoin help [COMMAND]`](#grpcoin-help-command)
 * [`grpcoin sell [AMOUNT]`](#grpcoin-sell-amount)
-* [`grpcoin watch [FILE]`](#grpcoin-watch-file)
+* [`grpcoin watch`](#grpcoin-watch)
 
 ## `grpcoin buy [AMOUNT]`
 
@@ -48,7 +48,7 @@ EXAMPLE
   $ grpcoin buy 2.5
 ```
 
-_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.0.1/src/commands/buy.ts)_
+_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.1.0/src/commands/buy.ts)_
 
 ## `grpcoin help [COMMAND]`
 
@@ -82,15 +82,15 @@ EXAMPLE
   $ grpcoin sell 2.5
 ```
 
-_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.0.1/src/commands/sell.ts)_
+_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.1.0/src/commands/sell.ts)_
 
-## `grpcoin watch [FILE]`
+## `grpcoin watch`
 
 Watch coin
 
 ```
 USAGE
-  $ grpcoin watch [FILE]
+  $ grpcoin watch
 
 OPTIONS
   -h, --help  show CLI help
@@ -99,5 +99,5 @@ EXAMPLE
   $ grpcoin watch
 ```
 
-_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.0.1/src/commands/watch.ts)_
+_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.1.0/src/commands/watch.ts)_
 <!-- commandsstop -->

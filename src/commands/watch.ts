@@ -16,20 +16,9 @@
 
 import { Command, flags } from "@oclif/command";
 import * as grpc from "grpc";
-import {
-  AccountClient,
-  PaperTradeClient,
-  TickerInfoClient,
-} from "../proto/grpcoin_grpc_pb";
-import {
-  Quote,
-  QuoteTicker,
-  TestAuthRequest,
-  TestAuthResponse,
-  TradeAction,
-  TradeRequest,
-  TradeResponse,
-} from "../proto/grpcoin_pb";
+
+import { TickerInfoClient } from "../proto/grpcoin_grpc_pb";
+import { Quote, QuoteTicker } from "../proto/grpcoin_pb";
 
 export default class Watch extends Command {
   static description = "Watch coin";
@@ -44,8 +33,6 @@ export default class Watch extends Command {
   };
 
   async run() {
-    const { args } = this.parse(Watch);
-
     const token = process.env.TOKEN;
     const server = "grpcoin-main-kafjc7sboa-wl.a.run.app:443";
 
