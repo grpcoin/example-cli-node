@@ -8,8 +8,6 @@
   },
   "bugs": "https://github.com/grpcoin/example-cli-node/issues",
   "dependencies": {
-    "@grpc/grpc-js": "^1.3.2",
-    "@grpc/proto-loader": "^0.6.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
@@ -17,14 +15,15 @@
     "@oclif/plugin-plugins": "^1.10.0",
     "google-protobuf": "^3.17.1",
     "grpc": "^1.24.10",
-    "grpc-tools": "^1.11.1",
     "grpc_tools_node_protoc_ts": "^5.2.2",
+    "grpc-tools": "^1.11.1",
     "tslib": "^1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/chai": "^4",
+    "@types/google-protobuf": "^3.15.2",
     "@types/mocha": "^5",
     "@types/node": "^10",
     "chai": "^4",
