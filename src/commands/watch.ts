@@ -38,7 +38,7 @@ export default class Watch extends Command {
 
     const tickerClient = new TickerInfoClient(
       server,
-      grpc.credentials.createSsl()
+      grpc.credentials.createSsl(),
     )
 
     const meta = new grpc.Metadata()
@@ -51,7 +51,7 @@ export default class Watch extends Command {
         '[server:%s] --  %d.%d',
         response.getT()?.toDate(),
         response.getPrice()?.getUnits(),
-        response.getPrice()?.getUnits()
+        response.getPrice()?.getUnits(),
       )
     })
   }

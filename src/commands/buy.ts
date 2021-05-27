@@ -46,7 +46,7 @@ export default class Buy extends Command {
 
     if (!token) {
       this.error(
-        'Create a permissionless Personal Access Token on GitHub https://github.com/settings/tokens and set it to TOKEN environment variable'
+        'Create a permissionless Personal Access Token on GitHub https://github.com/settings/tokens and set it to TOKEN environment variable',
       )
     }
 
@@ -56,7 +56,7 @@ export default class Buy extends Command {
 
     const accountClient: AccountClient = new AccountClient(
       server,
-      grpc.credentials.createSsl()
+      grpc.credentials.createSsl(),
     )
 
     const meta = new grpc.Metadata()
@@ -71,12 +71,12 @@ export default class Buy extends Command {
         }
 
         this.log('Login:', response.getUserId())
-      }
+      },
     )
 
     const tradeClient: PaperTradeClient = new PaperTradeClient(
       server,
-      grpc.credentials.createSsl()
+      grpc.credentials.createSsl(),
     )
 
     const trade = new TradeRequest()
@@ -96,9 +96,9 @@ export default class Buy extends Command {
           'ORDER EXECUTED: %s [%s] coins at USD[%s]',
           response.getAction(),
           response.getQuantity(),
-          response.getExecutedPrice()
+          response.getExecutedPrice(),
         )
-      }
+      },
     )
   }
 }
