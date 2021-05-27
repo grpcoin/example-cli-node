@@ -60,6 +60,7 @@
   "repository": "TheYkk/grpcoin",
   "scripts": {
     "posttest": "eslint . --ext .ts --config .eslintrc",
+    "fix": "eslint . --ext .ts --config .eslintrc --fix",
     "prepack": "rm -rf dist && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"

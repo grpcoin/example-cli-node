@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 const Help = require('@oclif/plugin-help').default
 
 const isHelpCommand = (id: string) => id === 'help'

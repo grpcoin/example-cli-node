@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-import { Command, flags } from "@oclif/command";
-import * as grpc from "grpc";
+import {Command, flags} from '@oclif/command'
+import * as grpc from 'grpc'
 
-import { TickerInfoClient } from "../proto/grpcoin_grpc_pb";
-import { Quote, QuoteTicker } from "../proto/grpcoin_pb";
+import {TickerInfoClient} from '../proto/grpcoin_grpc_pb'
+import {Quote, QuoteTicker} from '../proto/grpcoin_pb'
 
 export default class Watch extends Command {
-  static description = "Watch coin";
+  static description = 'Watch coin';
 
   static examples = [
     `$ grpcoin watch
@@ -29,30 +29,30 @@ export default class Watch extends Command {
   ];
 
   static flags = {
-    help: flags.help({ char: "h" }),
+    help: flags.help({char: 'h'}),
   };
 
   async run() {
-    const token = process.env.TOKEN;
-    const server = "grpcoin-main-kafjc7sboa-wl.a.run.app:443";
+    const token = process.env.TOKEN
+    const server = 'grpcoin-main-kafjc7sboa-wl.a.run.app:443'
 
     const tickerClient = new TickerInfoClient(
       server,
       grpc.credentials.createSsl()
-    );
+    )
 
-    const meta = new grpc.Metadata();
-    meta.add("authorization", "Bearer " + token);
+    const meta = new grpc.Metadata()
+    meta.add('authorization', 'Bearer ' + token)
 
-    let call = tickerClient.watch(new QuoteTicker().setTicker("BTC-USD"), meta);
+    const call = tickerClient.watch(new QuoteTicker().setTicker('BTC-USD'), meta)
 
-    call.on("data", (response: Quote) => {
+    call.on('data', (response: Quote) => {
       this.log(
-        "[server:%s] --  %d.%d",
+        '[server:%s] --  %d.%d',
         response.getT()?.toDate(),
         response.getPrice()?.getUnits(),
         response.getPrice()?.getUnits()
-      );
-    });
+      )
+    })
   }
 }
