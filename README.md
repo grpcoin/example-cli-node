@@ -19,36 +19,36 @@ $ npx grpcoin@latest
 $ npx grpcoin COMMAND
 running command...
 $ npx grpcoin (-v|--version|version)
-grpcoin/0.2.1 linux-x64 node-v16.1.0
+grpcoin/0.3.0 linux-x64 node-v16.1.0
 $ npx grpcoin --help [COMMAND]
 USAGE
-  $ npx grpcoin COMMAND
+  $  grpcoin COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`grpcoin buy [AMOUNT]`](#grpcoin-buy-amount)
+* [`grpcoin buy [COIN] [AMOUNT]`](#grpcoin-buy-coin-amount)
 * [`grpcoin help [COMMAND]`](#grpcoin-help-command)
-* [`grpcoin sell [AMOUNT]`](#grpcoin-sell-amount)
-* [`grpcoin watch`](#grpcoin-watch)
+* [`grpcoin sell [COIN] [AMOUNT]`](#grpcoin-sell-coin-amount)
+* [`grpcoin watch [COIN]`](#grpcoin-watch-coin)
 
-## `grpcoin buy [AMOUNT]`
+## `grpcoin buy [COIN] [AMOUNT]`
 
 Buy coin
 
 ```
 USAGE
-  $ npx grpcoin buy [AMOUNT]
+  $ npx grpcoin buy [COIN] [AMOUNT]
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ npx grpcoin buy 2.5
+  $ npx grpcoin buy ETH 2.5
 ```
 
-_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/buy.ts)_
+_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/buy.ts)_
 
 ## `grpcoin help [COMMAND]`
 
@@ -67,37 +67,37 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `grpcoin sell [AMOUNT]`
+## `grpcoin sell [COIN] [AMOUNT]`
 
 Sell coin
 
 ```
 USAGE
-  $ npx grpcoin sell [AMOUNT]
+  $ npx grpcoin sell [COIN] [AMOUNT]
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ npx grpcoin sell 2.5
+  $ npx grpcoin sell ETH 2.5
 ```
 
-_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/sell.ts)_
+_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/sell.ts)_
 
-## `grpcoin watch`
+## `grpcoin watch [COIN]`
 
 Watch coin
 
 ```
 USAGE
-  $ npx grpcoin watch
+  $ npx grpcoin watch [COIN]
 
 OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ npx grpcoin watch
+  $ npx grpcoin watch ETH
 ```
 
-_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.2.1/src/commands/watch.ts)_
+_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/watch.ts)_
 <!-- commandsstop -->

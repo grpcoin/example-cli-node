@@ -1,7 +1,7 @@
 {
   "name": "grpcoin",
   "description": "Grpc Coin Node cli",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Kaan Karakaya @TheYkk",
   "bin": {
     "grpcoin": "./bin/run"
