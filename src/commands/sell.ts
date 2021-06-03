@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-import {Command, flags} from '@oclif/command'
+import { Command, flags } from '@oclif/command'
 
 import * as grpc from 'grpc'
-import {AccountClient, PaperTradeClient} from '../proto/grpcoin_grpc_pb'
+import { AccountClient, PaperTradeClient } from '../proto/grpcoin_grpc_pb'
 import {
   QuoteTicker,
   TestAuthRequest,
@@ -27,23 +27,23 @@ import {
   TradeResponse,
 } from '../proto/grpcoin_pb'
 
-import {Parse} from '../lib/utils'
+import { Parse } from '../lib/utils'
 export default class Sell extends Command {
   static description = 'Sell coin';
 
-  static examples = ['$ grpcoin sell 2.5'];
+  static examples = ['$ grpcoin sell ETH 2.5'];
 
   static flags = {
-    help: flags.help({char: 'h'}),
+    help: flags.help({ char: 'h' }),
   };
 
-  static args = [{name: 'amount'}];
+  static args = [{ name: 'coin' }, { name: 'amount' }];
 
   async run() {
-    const {args} = this.parse(Sell)
+    const { args } = this.parse(Sell)
     const token = process.env.TOKEN
     const server = 'grpcoin-main-kafjc7sboa-wl.a.run.app:443'
-
+    let coin = "BTC"
     if (!token) {
       this.error(
         'Create a permissionless Personal Access Token on GitHub https://github.com/settings/tokens and set it to TOKEN environment variable',
@@ -53,7 +53,9 @@ export default class Sell extends Command {
     if (!Number(args.amount)) {
       this.error('Amount must be number')
     }
-
+    if (args.coin) {
+      coin = args.coin.toUpperCase()
+    }
     const accountClient: AccountClient = new AccountClient(
       server,
       grpc.credentials.createSsl(),
@@ -82,7 +84,7 @@ export default class Sell extends Command {
     const trade = new TradeRequest()
     trade.setAction(TradeAction.SELL)
     trade.setQuantity(Parse(args.amount))
-    trade.setTicker(new QuoteTicker().setTicker('BTC'))
+    trade.setTicker(new QuoteTicker().setTicker(coin))
 
     // Execute trade
     tradeClient.trade(
