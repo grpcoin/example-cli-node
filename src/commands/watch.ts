@@ -36,7 +36,7 @@ export default class Watch extends Command {
   async run() {
     const { args } = this.parse(Watch)
     const token = process.env.TOKEN
-    const server = 'grpcoin-main-kafjc7sboa-wl.a.run.app:443'
+    const server = 'api.grpco.in:443'
     let coin = "BTC"
 
     const tickerClient = new TickerInfoClient(

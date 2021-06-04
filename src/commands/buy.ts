@@ -42,7 +42,7 @@ export default class Buy extends Command {
   async run() {
     const { args } = this.parse(Buy)
     const token = process.env.TOKEN
-    const server = 'grpcoin-main-kafjc7sboa-wl.a.run.app:443'
+    const server = 'api.grpco.in:443'
     let coin = "BTC"
     if (!token) {
       this.error(
