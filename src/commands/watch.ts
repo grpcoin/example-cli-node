@@ -58,7 +58,7 @@ export default class Watch extends Command {
         '[server:%s] --  %d.%d',
         response.getT()?.toDate(),
         response.getPrice()?.getUnits(),
-        response.getPrice()?.getUnits(),
+        response.getPrice()?.getNanos(),
       )
     })
   }
