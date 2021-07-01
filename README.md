@@ -6,7 +6,7 @@ Grpc Coin Node cli
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/grpcoin.svg)](https://npmjs.org/package/grpcoin)
 [![Downloads/week](https://img.shields.io/npm/dw/grpcoin.svg)](https://npmjs.org/package/grpcoin)
-[![License](https://img.shields.io/npm/l/grpcoin.svg)](https://github.com/TheYkk/grpcoin/blob/master/package.json)
+[![License](https://img.shields.io/npm/l/grpcoin.svg)](https://github.com/grpcoin/example-cli-node/blob/master/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -32,6 +32,7 @@ USAGE
 * [`grpcoin help [COMMAND]`](#grpcoin-help-command)
 * [`grpcoin sell [COIN] [AMOUNT]`](#grpcoin-sell-coin-amount)
 * [`grpcoin watch [COIN]`](#grpcoin-watch-coin)
+* [`grpcoin portfolio`](#grpcoin-portfolio)
 
 ## `grpcoin buy [COIN] [AMOUNT]`
 
@@ -48,7 +49,7 @@ EXAMPLE
   $ npx grpcoin buy ETH 2.5
 ```
 
-_See code: [src/commands/buy.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/buy.ts)_
+_See code: [src/commands/buy.ts](https://github.com/grpcoin/example-cli-node/blob/master/src/commands/buy.ts)_
 
 ## `grpcoin help [COMMAND]`
 
@@ -82,7 +83,7 @@ EXAMPLE
   $ npx grpcoin sell ETH 2.5
 ```
 
-_See code: [src/commands/sell.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/sell.ts)_
+_See code: [src/commands/sell.ts](https://github.com/grpcoin/example-cli-node/blob/master/src/commands/sell.ts)_
 
 ## `grpcoin watch [COIN]`
 
@@ -99,5 +100,22 @@ EXAMPLE
   $ npx grpcoin watch ETH
 ```
 
-_See code: [src/commands/watch.ts](https://github.com/TheYkk/grpcoin/blob/v0.3.0/src/commands/watch.ts)_
+_See code: [src/commands/watch.ts](https://github.com/grpcoin/example-cli-node/blob/master/src/commands/watch.ts)_
+
+## `grpcoin portfolio`
+
+User portfolio
+
+```
+USAGE
+  $ npx grpcoin portfolio
+
+OPTIONS
+  -h, --help  show CLI help
+
+EXAMPLE
+  $ npx grpcoin portfolio
+```
+
+_See code: [src/commands/portfolio.ts](https://github.com/grpcoin/example-cli-node/blob/master/src/commands/portfolio.ts)_
 <!-- commandsstop -->
