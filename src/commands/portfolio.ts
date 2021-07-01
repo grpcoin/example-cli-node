@@ -54,8 +54,9 @@ export default class Portfolio extends Command {
         this.log('----Portfolio----')
 
         this.log(
-          'Cash: %s',
-          response.getCashUsd()
+          'Cash: %s,%s',
+          response.getCashUsd().getUnits(),
+          response.getCashUsd().getNanos()
         )
         let positons = response.getPositionsList()
 
