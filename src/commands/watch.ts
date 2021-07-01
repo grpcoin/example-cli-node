@@ -16,6 +16,7 @@
 
 import { Command, flags } from '@oclif/command'
 import * as grpc from 'grpc'
+import { server, grpcCreds } from '../lib/utils'
 
 import { TickerInfoClient } from '../proto/grpcoin_grpc_pb'
 import { Currency, Quote, TickerWatchRequest } from '../proto/grpcoin_pb'
@@ -36,12 +37,11 @@ export default class Watch extends Command {
   async run() {
     const { args } = this.parse(Watch)
     const token = process.env.TOKEN
-    const server = 'api.grpco.in:443'
     let coin = "BTC"
 
     const tickerClient = new TickerInfoClient(
       server,
-      grpc.credentials.createSsl(),
+      grpcCreds,
     )
 
     if (args.coin) {

@@ -17,17 +17,16 @@
 import { Command, flags } from '@oclif/command'
 
 import * as grpc from 'grpc'
-import { AccountClient, PaperTradeClient } from '../proto/grpcoin_grpc_pb'
+import {server,grpcCreds,Parse} from '../lib/utils'
+import { PaperTradeClient } from '../proto/grpcoin_grpc_pb'
 import {
   Currency,
-  TestAuthRequest,
-  TestAuthResponse,
   TradeAction,
   TradeRequest,
   TradeResponse,
 } from '../proto/grpcoin_pb'
 
-import { Parse } from '../lib/utils'
+
 export default class Sell extends Command {
   static description = 'Sell coin';
 
@@ -42,7 +41,6 @@ export default class Sell extends Command {
   async run() {
     const { args } = this.parse(Sell)
     const token = process.env.TOKEN
-    const server = 'api.grpco.in:443'
     let coin = "BTC"
     if (!token) {
       this.error(
@@ -56,29 +54,13 @@ export default class Sell extends Command {
     if (args.coin) {
       coin = args.coin.toUpperCase()
     }
-    const accountClient: AccountClient = new AccountClient(
-      server,
-      grpc.credentials.createSsl(),
-    )
 
     const meta = new grpc.Metadata()
     meta.add('authorization', 'Bearer ' + token)
 
-    await accountClient.testAuth(
-      new TestAuthRequest(),
-      meta,
-      (err: Error | null, response: TestAuthResponse) => {
-        if (err) {
-          this.error(err)
-        }
-
-        this.log('Login:', response.getUserId())
-      },
-    )
-
     const tradeClient: PaperTradeClient = new PaperTradeClient(
       server,
-      grpc.credentials.createSsl(),
+      grpcCreds,
     )
 
     const trade = new TradeRequest()
@@ -95,8 +77,7 @@ export default class Sell extends Command {
           this.error(err)
         }
         this.log(
-          'ORDER EXECUTED: %s [%s] coins at USD[%s] (cash remaining: %s)',
-          response.getAction(),
+          'ORDER EXECUTED: SELL [%s] %s coins at USD[%s] (cash remaining: %s)',
           response.getQuantity(),
           response.getCurrency().getSymbol(),
           response.getExecutedPrice(),

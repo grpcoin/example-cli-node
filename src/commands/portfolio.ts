@@ -16,12 +16,13 @@
 
 import { Command, flags } from '@oclif/command'
 import * as grpc from 'grpc'
-import { PaperTradeClient, AccountClient } from '../proto/grpcoin_grpc_pb';
+import { PaperTradeClient } from '../proto/grpcoin_grpc_pb';
+import { server, grpcCreds} from '../lib/utils';
 
-import { PortfolioRequest, PortfolioResponse, TestAuthRequest, TestAuthResponse } from '../proto/grpcoin_pb'
+import { PortfolioRequest, PortfolioResponse  } from '../proto/grpcoin_pb'
 
 export default class Portfolio extends Command {
-  static description = 'Get user Portfolio';
+  static description = 'Get user`s portfolio';
 
   static examples = [
     `$ grpcoin portfolio`,
@@ -31,35 +32,15 @@ export default class Portfolio extends Command {
     help: flags.help({ char: 'h' }),
   };
 
-  static args = [{ name: 'coin' }];
-
   async run() {
     const token = process.env.TOKEN
-    const server = 'api.grpco.in:443'
-
-    const accountClient: AccountClient = new AccountClient(
-      server,
-      grpc.credentials.createSsl(),
-    )
 
     const meta = new grpc.Metadata()
     meta.add('authorization', 'Bearer ' + token)
 
-    await accountClient.testAuth(
-      new TestAuthRequest(),
-      meta,
-      (err: Error | null, response: TestAuthResponse) => {
-        if (err) {
-          this.error(err)
-        }
-
-        this.log('Login:', response.getUserId() ,'\n')
-      },
-    )
-
     const tradeClient: PaperTradeClient = new PaperTradeClient(
       server,
-      grpc.credentials.createSsl(),
+      grpcCreds,
     );
 
     tradeClient.portfolio(

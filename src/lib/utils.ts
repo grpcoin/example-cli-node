@@ -15,6 +15,7 @@
  */
 
 import {Amount} from '../proto/grpcoin_pb'
+import * as grpc from 'grpc'
 
 const Parse = (p: string): Amount => {
   // Split the string on a decimal point, if present
@@ -33,4 +34,7 @@ const Parse = (p: string): Amount => {
   return new Amount().setUnits(parseInt(units, 10)).setNanos(nanos)
 }
 
-export {Parse}
+const server = process.env.LOCAL ? 'localhost:8080' : 'api.grpco.in:443'
+const grpcCreds = process.env.LOCAL ? grpc.credentials.createInsecure() : grpc.credentials.createSsl()
+
+export {Parse, server, grpcCreds}
