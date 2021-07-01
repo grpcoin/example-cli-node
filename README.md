@@ -14,7 +14,11 @@ Grpc Coin Node cli
 <!-- tocstop -->
 # Usage
 <!-- usage -->
+You need to create premissonless GithHub token
+[Create GitHub Token](https://github.com/grpcoin/example-cli-node)
+
 ```sh-session
+$ export TOKEN=ghp_LONGRANDOMKEY
 $ npx grpcoin@latest
 $ npx grpcoin COMMAND
 running command...
