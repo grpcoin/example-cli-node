@@ -20,6 +20,28 @@ var grpc = require('grpc');
 var grpcoin_pb = require('./grpcoin_pb.js');
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 
+function serialize_grpcoin_ListSupportedCurrenciesRequest(arg) {
+  if (!(arg instanceof grpcoin_pb.ListSupportedCurrenciesRequest)) {
+    throw new Error('Expected argument of type grpcoin.ListSupportedCurrenciesRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_grpcoin_ListSupportedCurrenciesRequest(buffer_arg) {
+  return grpcoin_pb.ListSupportedCurrenciesRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_grpcoin_ListSupportedCurrenciesResponse(arg) {
+  if (!(arg instanceof grpcoin_pb.ListSupportedCurrenciesResponse)) {
+    throw new Error('Expected argument of type grpcoin.ListSupportedCurrenciesResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_grpcoin_ListSupportedCurrenciesResponse(buffer_arg) {
+  return grpcoin_pb.ListSupportedCurrenciesResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_grpcoin_PortfolioRequest(arg) {
   if (!(arg instanceof grpcoin_pb.PortfolioRequest)) {
     throw new Error('Expected argument of type grpcoin.PortfolioRequest');
@@ -53,17 +75,6 @@ function deserialize_grpcoin_Quote(buffer_arg) {
   return grpcoin_pb.Quote.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_grpcoin_QuoteTicker(arg) {
-  if (!(arg instanceof grpcoin_pb.QuoteTicker)) {
-    throw new Error('Expected argument of type grpcoin.QuoteTicker');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_grpcoin_QuoteTicker(buffer_arg) {
-  return grpcoin_pb.QuoteTicker.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_grpcoin_TestAuthRequest(arg) {
   if (!(arg instanceof grpcoin_pb.TestAuthRequest)) {
     throw new Error('Expected argument of type grpcoin.TestAuthRequest');
@@ -84,6 +95,17 @@ function serialize_grpcoin_TestAuthResponse(arg) {
 
 function deserialize_grpcoin_TestAuthResponse(buffer_arg) {
   return grpcoin_pb.TestAuthResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_grpcoin_TickerWatchRequest(arg) {
+  if (!(arg instanceof grpcoin_pb.TickerWatchRequest)) {
+    throw new Error('Expected argument of type grpcoin.TickerWatchRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_grpcoin_TickerWatchRequest(buffer_arg) {
+  return grpcoin_pb.TickerWatchRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_grpcoin_TradeRequest(arg) {
@@ -111,47 +133,26 @@ function deserialize_grpcoin_TradeResponse(buffer_arg) {
 
 var TickerInfoService = exports.TickerInfoService = {
   // Watch returns real-time quotes of the ticker.
-// The only supported ticker is "BTC-USD".
+// The only supported tickers are "BTC", "ETH", "DOGE", "DOT".
 //
-// The stream might return error (if it fails to get prices) or
-// time out if you stream it for over 15 minutes.
-// If the stream terminates, please reconnect.
+// This stream terminates after 15 minutes, so expect being
+// abruptly disconnected and need to reconnect.
 //
-// Unauthenticated.
+// No authentication required.
 watch: {
     path: '/grpcoin.TickerInfo/Watch',
     requestStream: false,
     responseStream: true,
-    requestType: grpcoin_pb.QuoteTicker,
+    requestType: grpcoin_pb.TickerWatchRequest,
     responseType: grpcoin_pb.Quote,
-    requestSerialize: serialize_grpcoin_QuoteTicker,
-    requestDeserialize: deserialize_grpcoin_QuoteTicker,
+    requestSerialize: serialize_grpcoin_TickerWatchRequest,
+    requestDeserialize: deserialize_grpcoin_TickerWatchRequest,
     responseSerialize: serialize_grpcoin_Quote,
     responseDeserialize: deserialize_grpcoin_Quote,
   },
 };
 
 exports.TickerInfoClient = grpc.makeGenericClientConstructor(TickerInfoService);
-var AccountService = exports.AccountService = {
-  // Tests if your token works.
-//
-// Send a header (gRPC metadata) named "Authorization"
-// with value "Bearer XXX" where XXX is a GitHub Personal Access token
-// from https://github.com/settings/tokens (no permissions needed).
-testAuth: {
-    path: '/grpcoin.Account/TestAuth',
-    requestStream: false,
-    responseStream: false,
-    requestType: grpcoin_pb.TestAuthRequest,
-    responseType: grpcoin_pb.TestAuthResponse,
-    requestSerialize: serialize_grpcoin_TestAuthRequest,
-    requestDeserialize: deserialize_grpcoin_TestAuthRequest,
-    responseSerialize: serialize_grpcoin_TestAuthResponse,
-    responseDeserialize: deserialize_grpcoin_TestAuthResponse,
-  },
-};
-
-exports.AccountClient = grpc.makeGenericClientConstructor(AccountService);
 var PaperTradeService = exports.PaperTradeService = {
   // Returns authenticated user's portfolio.
 portfolio: {
@@ -179,6 +180,38 @@ trade: {
     responseSerialize: serialize_grpcoin_TradeResponse,
     responseDeserialize: deserialize_grpcoin_TradeResponse,
   },
+  // Returns symbols supported by Trade or Watch methods.
+listSupportedCurrencies: {
+    path: '/grpcoin.PaperTrade/ListSupportedCurrencies',
+    requestStream: false,
+    responseStream: false,
+    requestType: grpcoin_pb.ListSupportedCurrenciesRequest,
+    responseType: grpcoin_pb.ListSupportedCurrenciesResponse,
+    requestSerialize: serialize_grpcoin_ListSupportedCurrenciesRequest,
+    requestDeserialize: deserialize_grpcoin_ListSupportedCurrenciesRequest,
+    responseSerialize: serialize_grpcoin_ListSupportedCurrenciesResponse,
+    responseDeserialize: deserialize_grpcoin_ListSupportedCurrenciesResponse,
+  },
 };
 
 exports.PaperTradeClient = grpc.makeGenericClientConstructor(PaperTradeService);
+var AccountService = exports.AccountService = {
+  // Tests if your token works.
+//
+// Send a header (gRPC metadata) named "Authorization"
+// with value "Bearer XXX" where XXX is a GitHub Personal Access token
+// from https://github.com/settings/tokens (no permissions needed).
+testAuth: {
+    path: '/grpcoin.Account/TestAuth',
+    requestStream: false,
+    responseStream: false,
+    requestType: grpcoin_pb.TestAuthRequest,
+    responseType: grpcoin_pb.TestAuthResponse,
+    requestSerialize: serialize_grpcoin_TestAuthRequest,
+    requestDeserialize: deserialize_grpcoin_TestAuthRequest,
+    responseSerialize: serialize_grpcoin_TestAuthResponse,
+    responseDeserialize: deserialize_grpcoin_TestAuthResponse,
+  },
+};
+
+exports.AccountClient = grpc.makeGenericClientConstructor(AccountService);

@@ -1,19 +1,3 @@
-/**
- * Copyright 2021 Kaan Karakaya
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 // package: grpcoin
 // file: grpcoin.proto
 
@@ -23,23 +7,69 @@
 import * as jspb from "google-protobuf";
 import * as google_protobuf_timestamp_pb from "google-protobuf/google/protobuf/timestamp_pb";
 
-export class QuoteTicker extends jspb.Message { 
-    getTicker(): string;
-    setTicker(value: string): QuoteTicker;
+export class Currency extends jspb.Message { 
+    getSymbol(): string;
+    setSymbol(value: string): Currency;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): QuoteTicker.AsObject;
-    static toObject(includeInstance: boolean, msg: QuoteTicker): QuoteTicker.AsObject;
+    toObject(includeInstance?: boolean): Currency.AsObject;
+    static toObject(includeInstance: boolean, msg: Currency): Currency.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: QuoteTicker, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): QuoteTicker;
-    static deserializeBinaryFromReader(message: QuoteTicker, reader: jspb.BinaryReader): QuoteTicker;
+    static serializeBinaryToWriter(message: Currency, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Currency;
+    static deserializeBinaryFromReader(message: Currency, reader: jspb.BinaryReader): Currency;
 }
 
-export namespace QuoteTicker {
+export namespace Currency {
     export type AsObject = {
-        ticker: string,
+        symbol: string,
+    }
+}
+
+export class Amount extends jspb.Message { 
+    getUnits(): number;
+    setUnits(value: number): Amount;
+    getNanos(): number;
+    setNanos(value: number): Amount;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Amount.AsObject;
+    static toObject(includeInstance: boolean, msg: Amount): Amount.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Amount, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Amount;
+    static deserializeBinaryFromReader(message: Amount, reader: jspb.BinaryReader): Amount;
+}
+
+export namespace Amount {
+    export type AsObject = {
+        units: number,
+        nanos: number,
+    }
+}
+
+export class TickerWatchRequest extends jspb.Message { 
+
+    hasCurrency(): boolean;
+    clearCurrency(): void;
+    getCurrency(): Currency | undefined;
+    setCurrency(value?: Currency): TickerWatchRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TickerWatchRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TickerWatchRequest): TickerWatchRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TickerWatchRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TickerWatchRequest;
+    static deserializeBinaryFromReader(message: TickerWatchRequest, reader: jspb.BinaryReader): TickerWatchRequest;
+}
+
+export namespace TickerWatchRequest {
+    export type AsObject = {
+        currency?: Currency.AsObject,
     }
 }
 
@@ -69,29 +99,6 @@ export namespace Quote {
     export type AsObject = {
         t?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         price?: Amount.AsObject,
-    }
-}
-
-export class Amount extends jspb.Message { 
-    getUnits(): number;
-    setUnits(value: number): Amount;
-    getNanos(): number;
-    setNanos(value: number): Amount;
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Amount.AsObject;
-    static toObject(includeInstance: boolean, msg: Amount): Amount.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Amount, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Amount;
-    static deserializeBinaryFromReader(message: Amount, reader: jspb.BinaryReader): Amount;
-}
-
-export namespace Amount {
-    export type AsObject = {
-        units: number,
-        nanos: number,
     }
 }
 
@@ -179,10 +186,10 @@ export namespace PortfolioResponse {
 
 export class PortfolioPosition extends jspb.Message { 
 
-    hasTicker(): boolean;
-    clearTicker(): void;
-    getTicker(): PortfolioPosition.Ticker | undefined;
-    setTicker(value?: PortfolioPosition.Ticker): PortfolioPosition;
+    hasCurrency(): boolean;
+    clearCurrency(): void;
+    getCurrency(): Currency | undefined;
+    setCurrency(value?: Currency): PortfolioPosition;
 
     hasAmount(): boolean;
     clearAmount(): void;
@@ -201,41 +208,19 @@ export class PortfolioPosition extends jspb.Message {
 
 export namespace PortfolioPosition {
     export type AsObject = {
-        ticker?: PortfolioPosition.Ticker.AsObject,
+        currency?: Currency.AsObject,
         amount?: Amount.AsObject,
     }
-
-
-    export class Ticker extends jspb.Message { 
-        getTicker(): string;
-        setTicker(value: string): Ticker;
-
-        serializeBinary(): Uint8Array;
-        toObject(includeInstance?: boolean): Ticker.AsObject;
-        static toObject(includeInstance: boolean, msg: Ticker): Ticker.AsObject;
-        static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-        static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-        static serializeBinaryToWriter(message: Ticker, writer: jspb.BinaryWriter): void;
-        static deserializeBinary(bytes: Uint8Array): Ticker;
-        static deserializeBinaryFromReader(message: Ticker, reader: jspb.BinaryReader): Ticker;
-    }
-
-    export namespace Ticker {
-        export type AsObject = {
-            ticker: string,
-        }
-    }
-
 }
 
 export class TradeRequest extends jspb.Message { 
     getAction(): TradeAction;
     setAction(value: TradeAction): TradeRequest;
 
-    hasTicker(): boolean;
-    clearTicker(): void;
-    getTicker(): TradeRequest.Ticker | undefined;
-    setTicker(value?: TradeRequest.Ticker): TradeRequest;
+    hasCurrency(): boolean;
+    clearCurrency(): void;
+    getCurrency(): Currency | undefined;
+    setCurrency(value?: Currency): TradeRequest;
 
     hasQuantity(): boolean;
     clearQuantity(): void;
@@ -255,31 +240,9 @@ export class TradeRequest extends jspb.Message {
 export namespace TradeRequest {
     export type AsObject = {
         action: TradeAction,
-        ticker?: TradeRequest.Ticker.AsObject,
+        currency?: Currency.AsObject,
         quantity?: Amount.AsObject,
     }
-
-
-    export class Ticker extends jspb.Message { 
-        getTicker(): string;
-        setTicker(value: string): Ticker;
-
-        serializeBinary(): Uint8Array;
-        toObject(includeInstance?: boolean): Ticker.AsObject;
-        static toObject(includeInstance: boolean, msg: Ticker): Ticker.AsObject;
-        static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-        static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-        static serializeBinaryToWriter(message: Ticker, writer: jspb.BinaryWriter): void;
-        static deserializeBinary(bytes: Uint8Array): Ticker;
-        static deserializeBinaryFromReader(message: Ticker, reader: jspb.BinaryReader): Ticker;
-    }
-
-    export namespace Ticker {
-        export type AsObject = {
-            ticker: string,
-        }
-    }
-
 }
 
 export class TradeResponse extends jspb.Message { 
@@ -291,6 +254,11 @@ export class TradeResponse extends jspb.Message {
     getAction(): TradeAction;
     setAction(value: TradeAction): TradeResponse;
 
+    hasCurrency(): boolean;
+    clearCurrency(): void;
+    getCurrency(): Currency | undefined;
+    setCurrency(value?: Currency): TradeResponse;
+
     hasQuantity(): boolean;
     clearQuantity(): void;
     getQuantity(): Amount | undefined;
@@ -300,6 +268,11 @@ export class TradeResponse extends jspb.Message {
     clearExecutedPrice(): void;
     getExecutedPrice(): Amount | undefined;
     setExecutedPrice(value?: Amount): TradeResponse;
+
+    hasResultingPortfolio(): boolean;
+    clearResultingPortfolio(): void;
+    getResultingPortfolio(): TradeResponse.Portfolio | undefined;
+    setResultingPortfolio(value?: TradeResponse.Portfolio): TradeResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TradeResponse.AsObject;
@@ -315,25 +288,79 @@ export namespace TradeResponse {
     export type AsObject = {
         t?: google_protobuf_timestamp_pb.Timestamp.AsObject,
         action: TradeAction,
+        currency?: Currency.AsObject,
         quantity?: Amount.AsObject,
         executedPrice?: Amount.AsObject,
+        resultingPortfolio?: TradeResponse.Portfolio.AsObject,
+    }
+
+
+    export class Portfolio extends jspb.Message { 
+
+        hasRemainingCash(): boolean;
+        clearRemainingCash(): void;
+        getRemainingCash(): Amount | undefined;
+        setRemainingCash(value?: Amount): Portfolio;
+        clearPositionsList(): void;
+        getPositionsList(): Array<PortfolioPosition>;
+        setPositionsList(value: Array<PortfolioPosition>): Portfolio;
+        addPositions(value?: PortfolioPosition, index?: number): PortfolioPosition;
+
+        serializeBinary(): Uint8Array;
+        toObject(includeInstance?: boolean): Portfolio.AsObject;
+        static toObject(includeInstance: boolean, msg: Portfolio): Portfolio.AsObject;
+        static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+        static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+        static serializeBinaryToWriter(message: Portfolio, writer: jspb.BinaryWriter): void;
+        static deserializeBinary(bytes: Uint8Array): Portfolio;
+        static deserializeBinaryFromReader(message: Portfolio, reader: jspb.BinaryReader): Portfolio;
+    }
+
+    export namespace Portfolio {
+        export type AsObject = {
+            remainingCash?: Amount.AsObject,
+            positionsList: Array<PortfolioPosition.AsObject>,
+        }
+    }
+
+}
+
+export class ListSupportedCurrenciesRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListSupportedCurrenciesRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListSupportedCurrenciesRequest): ListSupportedCurrenciesRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListSupportedCurrenciesRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListSupportedCurrenciesRequest;
+    static deserializeBinaryFromReader(message: ListSupportedCurrenciesRequest, reader: jspb.BinaryReader): ListSupportedCurrenciesRequest;
+}
+
+export namespace ListSupportedCurrenciesRequest {
+    export type AsObject = {
     }
 }
 
-export class Empty extends jspb.Message { 
+export class ListSupportedCurrenciesResponse extends jspb.Message { 
+    clearSupportedCurrenciesList(): void;
+    getSupportedCurrenciesList(): Array<Currency>;
+    setSupportedCurrenciesList(value: Array<Currency>): ListSupportedCurrenciesResponse;
+    addSupportedCurrencies(value?: Currency, index?: number): Currency;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Empty.AsObject;
-    static toObject(includeInstance: boolean, msg: Empty): Empty.AsObject;
+    toObject(includeInstance?: boolean): ListSupportedCurrenciesResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: ListSupportedCurrenciesResponse): ListSupportedCurrenciesResponse.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Empty, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Empty;
-    static deserializeBinaryFromReader(message: Empty, reader: jspb.BinaryReader): Empty;
+    static serializeBinaryToWriter(message: ListSupportedCurrenciesResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListSupportedCurrenciesResponse;
+    static deserializeBinaryFromReader(message: ListSupportedCurrenciesResponse, reader: jspb.BinaryReader): ListSupportedCurrenciesResponse;
 }
 
-export namespace Empty {
+export namespace ListSupportedCurrenciesResponse {
     export type AsObject = {
+        supportedCurrenciesList: Array<Currency.AsObject>,
     }
 }
 

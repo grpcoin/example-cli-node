@@ -18,7 +18,7 @@ import { Command, flags } from '@oclif/command'
 import * as grpc from 'grpc'
 
 import { TickerInfoClient } from '../proto/grpcoin_grpc_pb'
-import { Quote, QuoteTicker } from '../proto/grpcoin_pb'
+import { Currency, Quote, TickerWatchRequest } from '../proto/grpcoin_pb'
 
 export default class Watch extends Command {
   static description = 'Watch coin';
@@ -51,7 +51,7 @@ export default class Watch extends Command {
     const meta = new grpc.Metadata()
     meta.add('authorization', 'Bearer ' + token)
 
-    const call = tickerClient.watch(new QuoteTicker().setTicker(coin + '-USD'), meta)
+    const call = tickerClient.watch(new TickerWatchRequest().setCurrency(new Currency().setSymbol(coin)), meta)
 
     call.on('data', (response: Quote) => {
       this.log(

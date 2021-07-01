@@ -19,7 +19,7 @@ import { Command, flags } from '@oclif/command'
 import * as grpc from 'grpc'
 import { AccountClient, PaperTradeClient } from '../proto/grpcoin_grpc_pb'
 import {
-  QuoteTicker,
+  Currency,
   TestAuthRequest,
   TestAuthResponse,
   TradeAction,
@@ -84,7 +84,7 @@ export default class Sell extends Command {
     const trade = new TradeRequest()
     trade.setAction(TradeAction.SELL)
     trade.setQuantity(Parse(args.amount))
-    trade.setTicker(new QuoteTicker().setTicker(coin))
+    trade.setCurrency(new Currency().setSymbol(coin))
 
     // Execute trade
     tradeClient.trade(
@@ -95,10 +95,12 @@ export default class Sell extends Command {
           this.error(err)
         }
         this.log(
-          'ORDER EXECUTED: %s [%s] coins at USD[%s]',
+          'ORDER EXECUTED: %s [%s] coins at USD[%s] (cash remaining: %s)',
           response.getAction(),
           response.getQuantity(),
+          response.getCurrency().getSymbol(),
           response.getExecutedPrice(),
+          response.getResultingPortfolio().getRemainingCash()
         )
       },
     )
